@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>socket的链接测试</div>
+</body>
+
+<script src="https://cdn.bootcss.com/socket.io/2.0.4/socket.io.js"></script>
+<!-- <script src="/socket.io/socket.io.js"></script> -->
+<script>
+  const socket = io('http://localhost');
+  socket.on('news', function (data) {
+    console.log('服务端 news 端口返回值：', data);
+    socket.emit('my other event', { my: 'data' });
+  });
+</script>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <link rel="stylesheet" href="style/base.css">
+    
+</head>
+<body>
+    <h1></h1>
+    <div class="form">
+        <p class="flex-row">
+            <span class="flex-left">姓名:</span>
+            <input class="flex-right" autocomplete="off" type="text" name="name"/>
+        </p>
+        <p class="flex-row">
+            <span class="flex-left">年龄:</span>
+            <input class="flex-right" autocomplete="off" type="text" name="age"/>
+        </p>
+        <p class="flex-row">
+            <span class="flex-left">特征值:</span>
+            <input class="flex-right" autocomplete="off" type="text" name="prehash"/>
+        </p>
+        <p class="center">
+            <button id="addbtn">添加</button>
+        </p>
+    </div>
+</body>
+<script>
+    $('document').ready(getData());
+    $('#addbtn').on('click',postRegist);
+
+    function postRegist (e) {
+        e.preventDefault();
+        let name = $("input[name='name']").val();
+        let age = $("input[name='age']").val();
+        let prehash = $("input[name='prehash']").val();
+        let infoObj = {
+            name: name,
+            age: age,
+            prehash: prehash
+        }
+        infoObj = JSON.stringify(infoObj);
+        console.log(infoObj, 'json');
+        $.ajax({
+            type: 'POST',
+            url: '/adduser',
+            data: infoObj,
+            contentType: 'application/json',
+            success: function(data){
+                let msg = data.msg;
+                let status = data.code;
+                if(status === 200){
+                    getData();
+                } else {
+                    alert('添加失败！')
+                }
+            },
+            error: function(err){
+                console.log(err);
+                alert('请求失败！');
+            },
+            dataType: 'json'
+       })
+    }
+
+    function getData (e) {
+
+        $.ajax({
+            type: 'post',
+            url: '/find',
+            success: function (data) {
+                if (data.status === 200) {
+                    let d = data.data;
+                    console.log('findAll user info ', d);
+                    let ul_buffer = document.createDocumentFragment();
+                    for (let i=0,len=d.length; i<len; i++) {
+                        let ul_ele = $('<ul></ul>')[0];
+                        let li_buffer = document.createDocumentFragment();
+                        Object.keys(d[i]).forEach((v) => {
+                           let val = d[i][v];
+                           let li_ele = document.createElement('li');
+                           li_ele.innerText = val;
+                           li_ele.setAttribute('class', 'btn-group ')
+                           li_buffer.appendChild(li_ele);
+                        })
+                        ul_ele.appendChild(li_buffer);
+                        ul_buffer.appendChild(ul_ele);
+                    }
+                    document.body.appendChild(ul_buffer);
+                }
+            }
+        })
+    }
+    </script>
+</html>

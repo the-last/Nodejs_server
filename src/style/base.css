@@ -1,0 +1,138 @@
+body, li, ul, h1, h2, h3, h4, h5, h6, p, pre, form {
+    font-weight: normal;
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    font-family: "Microsoft Yahei","Hiragino Sans GB","Helvetica Neue",Helvetica,tahoma,arial,Verdana,sans-serif;
+    background-color: #178796;
+    text-align: left;
+}
+
+h1 {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    height: 120px;
+    line-height: 150px;
+}
+
+input {
+    display: inline-block;
+    height: 100%;
+    line-height: 100%;
+    text-indent: .5em;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+}
+
+button {
+    display: inline-block;
+    padding: 0px 20px;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 0px;
+    background-color: #178796;
+    cursor: pointer;
+}
+
+.form {
+    width: 400px;
+    box-sizing: border-box;
+    margin: 0px auto;
+    border-radius: 3px;
+    border: 1px solid white;
+    background-color: white;
+    color: #111;
+}
+
+.form > p {
+    width: 70%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+    margin: 20px auto;
+}
+p > input {
+    flex: 80px;
+}
+p > span {
+    display: inline-block;
+    min-width: 60px;
+    text-align: right;
+    padding-right: 5px;
+}   
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    -ms-flex-direction: row;
+}
+
+.flex-row > .flex-left {
+    flex: 1;
+}
+.flex-row > .flex-right {
+    flex: 8;
+}
+
+.center {
+    text-align: center;
+}
+.right {
+    text-align: right;
+}
+
+
+.alert {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(99, 99, 99, .8)
+}
+.alert > div {
+    display: block;
+    width: 80%;
+    margin: 200px auto 0px;
+    padding: 20px;
+    border-radius: 3px 3px 0 0;
+    background-color: #178796;
+    background-clip: padding-box;
+    background-color: #48CCDD;
+}
+.alert > div > .center {
+    height: 50px;
+    line-height: 80px;
+}
+
+ul {
+    width: 100%;
+    list-style-type: none;
+}
+ul:after {
+    content: '';
+    display: block;
+    font-size: 0px;
+    overflow: hidden;
+    clear: both;
+}
+ul > li {
+    height: 25px;
+    line-height: 25px;
+    width: 70%;
+    box-sizing: border-box;
+    padding-left: 15px;
+    margin: 5px auto 0px;
+    font-size: 14px;
+    text-align: left;
+    border-radius: 2px;
+    border: 1px solid #48CCDD;
+    background-color: white;
+    color: #666;
+}
