@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const allowCrossDomain = require('./config/access-control')
 const morgan = require('./config/morgan')
+const getResTime = require('./plugins/getResTime')
 
 // var sequelize = require('./orm/sequelize');
 var user = require('./orm/user');
@@ -16,6 +17,7 @@ app.use(morgan);                             // 设置服务器响应的日志
 app.use(express.static(__dirname + '/src')); // 将服务端静态文件对客户端共享
 app.use(bodyParser.json());                  // 解析post请求的参数
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(getResTime);
 
 
 app.get('/', function(req, res) {
